@@ -11,7 +11,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 ### Projects:
 
 
-[link](https://lukas562dev.github.io/AutoPvP, "Title")
+[AutoPvP](https://lukas562dev.github.io/AutoPvP, "AutoPvP")
 
 ```markdown
 Syntax highlighted code block
