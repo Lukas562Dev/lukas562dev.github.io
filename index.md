@@ -1,7 +1,7 @@
 # Sub2Lukas562
 ### Projects:
 
-[gitPvP](https://lukas562dev.github.io/AutoPvP "AutoPvP")
+[WHY ARE U HOVERING OVER THIS](https://lukas562dev.github.io "No projects, sorry")
 
 ### About me:
 I'm a Finnish Youtuber, Twitch Streamer and Developer.
