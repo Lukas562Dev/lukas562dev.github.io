@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
-title: Lukas562's Dev Website
-description: This is Lukas562's developer website!
+title: Lukas Does Dev
+description: This is Lukas Does Stuff's dev website!
 plugins:
   - jekyll-mentions
   - jekyll-admin
