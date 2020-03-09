@@ -1,6 +1,0 @@
-theme: jekyll-theme-cayman
-title: Lukas Does Dev
-description: This is Lukas Does Stuff's dev website!
-plugins:
-  - jekyll-mentions
-  - jekyll-admin
