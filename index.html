@@ -1,58 +1,71 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://unpkg.com/tailwindcss@1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-  <title>LukasDoesDev Website</title>
+  <title>Lukas's Website!</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/0.8.2/purify.min.js"></script>
 </head>
 <body>
-  <div class="text-center h-screen bg-white text-2xl text-black font-sans">
-    <div class="align-middle">
-      <div class="text-6xl">Lukas Does Dev</div>
-      This is Lukas Does Stuff's dev website! <br>
-      Subscribe to Lukas Does Stuff on Youtube.
-    </div>
-  </div>
-
-  <div class="text-center h-screen text-2xl text-black font-sans bg-darknotblack">
-
-    <br>
-
-    <div class="max-w-sm rounded overflow-hidden shadow-lg m-5 mt-0 mx-auto bg-notreallyblack">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">Projects</div>
-        <p class="text-gray-700 text-base">
-          My *public* projects are listed below
-        </p>
+  <!-- <h1>Hello World!</h1>
+  <h2>Lukas's Website!</h2>
+  <p>Example project generated using SmartCLI.</p> -->
+  <nav class="nav">
+    <h1><a href="/">Lukas's Website!</a></h1>
+  </nav>
+  <header class="header">
+    <div class="headerContent center">
+      <div class="headerLeft">
+        <h1>Hello, World! I'm Lukas,</h1>
+        <h2>
+          a self taught programmer from Finland who has expirience in
+          <a href="https://en.wikipedia.org/wiki/HTML" class="headerDescLink">HTML</a>,
+          <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" class="headerDescLink">CSS</a>,
+          JavaScript (<a href="https://nodejs.org" class="headerDescLink">Node.js</a> &
+          <a href="https://deno.land/" class="headerDescLink">Deno</a>),
+          <a href="https://reactjs.org/" class="headerDescLink">React</a>,
+          <a href="https://reactnative.dev/" class="headerDescLink">React Native</a>,
+          <a href="https://www.electronjs.org/" class="headerDescLink">Electron</a>,
+          <a href="https://angular.io/" class="headerDescLink">Angular</a>,
+          <a href="https://flutter.dev/" class="headerDescLink">Flutter</a>
+          and some other cool frameworks and libraries
+        </h2>
       </div>
-      <div class="px-6 py-4">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">hehe</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">devteams</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">octagonal</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">sandboxer</span>
-      </div>
-    </div>
-
-    <div class="max-w-sm rounded overflow-hidden shadow-lg m-5 mt-0 mx-auto bg-notreallyblack">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">Media</div>
-        <p class="text-gray-700 text-base">
-          Follow me on:
-        </p>
-      </div>
-      <div class="px-6 py-4 text-center">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Twitter @ <a href="https://twitter.com/itsAMeLukasDoes">itsAMeLukasDoes</a></span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Youtube @ <a href="https://bit.ly/SubToLukas">LukasDoesStuff</a></span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Mixer @ <a href="https://bit.ly/LukasDoesMixer">LukasDoesStreams</a></span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Twitch @ <a href="https://bit.ly/LukasDoesTwitch">LukasDoesStreams</a></span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Github @ <a href="https://github.com/LukasDoesDev">LukasDoesDev</a></span>
+      <div class="headerRight">
+        <!-- <div class="headerRightIMG"></div> -->
+        <img src="./undraw/undraw_code_review.svg" class="headerRightIMG" alt="Image: Lukas looking at code">
       </div>
     </div>
-  </div>
+  </header>
+  <main class="main content">
+    <div class="projects">
 
-  <script src="main.js"></script>
+      <h1 class="projectsHeader">Projects:</h1>
+
+      <div class="projectsList">
+        <!-- <div class="project">
+
+          <div class="projectUpper">
+            <h3 class="projectTitle">Exaple Project</h3>
+            <span class="projectDesc">This is an Example Project. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+          </div>
+
+          <div class="projectLower">
+            <div class="projectLinks">
+              <a href="https://github.com/LukasDoesDev/example">Github</a>
+              <a href="https://example.com">Website</a>
+            </div>
+          </div>
+
+        </div> -->
+      </div>
+
+    </div>
+  </main>
+  <footer>(c) LukasDoesDev 2020</footer>
 </body>
 </html>

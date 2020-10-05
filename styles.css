@@ -1,7 +1,228 @@
-bg-darknotblack {
-  background: #2C2F33 !important;
+/* styles.css */
+
+@import url('normalize.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+
+  --basic-font: 'Open Sans', sans-serif;
+  --title-font: 'Roboto', sans-serif;
+
+
+  --color-yellow: #F6F62E;
+  --color-green: #25C525;
+  --color-red: #F62E2E;
+  --color-purple: #7726A4;
+
+  /* Analogous */
+  /*
+  --brand-color-a: #472DFC;
+  --brand-color-b: #272DD9;
+  --brand-color-c: #385AF0;
+  --brand-color-d: #2763D9;
+  --brand-color-e: #2F92FA;
+  */
+  
+  /* Monochromatic */
+  --brand-color-a: #162A70;
+  --brand-color-b: #7993F2;
+  --brand-color-c: #3059F0;
+  --brand-color-d: #384470;
+  --brand-color-e: #2646BD;
+
+  --white-text-a: hsl(0, 0%, 100%);
+  --white-text-b: hsl(0, 0%, 90%);
+  --dark-text: hsl(0, 0%, 13%);
+  --gray-text: hsl(0, 0%, 29%);
+  --light-gray-text: hsl(0, 0%, 45%);
+
+  --dark-bg: #444f57;
 }
 
-bg-notreallyblack {
-  background: #23272A !important;
+body {
+  font-family: var(--basic-font);
+  margin: 0;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+.nav {
+  /*transition: background-color 1s ease 0.05s;position: fixed;/* a */
+  background-color: var(--dark-bg);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3rem;
+  z-index: 999;
+}
+
+.nav h1 {
+  margin: 0;
+  padding: 0.2rem;
+  display: inline-block;
+}
+
+.nav > a {
+  margin: 0;
+  padding: 1rem;
+  color: var(--white-text-b);
+  display: inline-block;
+}
+
+.navLinks {
+  /* overflow: auto;/* a */
+  float: right;
+}
+
+.nav h1 a {
+  color: var(--white-text-a);
+  text-decoration: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+  }
+}
+
+
+.header {
+  top: 0px;
+  left: 0px;
+  /*background-color: #504ca8;
+  background-image: linear-gradient(30deg, #504ca8, #8f72d3);/* a */
+  /*background-image: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);*/
+  
+  background-color: white;
+
+  color: var(--gray-text);
+  height: 100vh;
+  font-family: var(--basic-font);
+  text-align: center;
+  padding: 0;
+}
+
+.header h1 {
+  font-weight: 700;
+  color: var(--dark-text);
+  font-family: var(--title-font);
+}
+
+.headerLeft h2 {
+  font-weight: 300;
+}
+
+.headerLeft {
+  /*float: left;/* a */
+  flex: 1 1;
+}
+.headerRight {
+  /*float: right;/* a */
+  flex: 1 1;
+}
+
+.headerRightIMG {
+  width: 100%;
+}
+/*.headerRightIMG {
+  background-image: src('./undraw/undraw_code_inspection.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 2rem;
+  height: auto;
+}*/
+
+.headerContent {
+  display: flex;
+  width: 70vw;
+}
+
+.headerDescLink {
+  color: var(--dark-text);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.headerDescLink:hover {
+  text-decoration: underline;
+}
+
+
+
+.projectsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3rem;
+}
+
+.project {
+  margin: 1vw;
+  padding: 1rem;
+  --width-height: 22.4vw;
+  width: var(--width-height);
+  height: var(--width-height);
+}
+
+.projectTitle {
+  margin: 0;
+}
+
+.projectUpper {
+  background-color: var(--white-text-a);
+  box-shadow: 2px 2px 6px 1px var(--dark-bg);
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.projectLower {
+  background-color: var(--white-text-b);
+  box-shadow: 2px 2px 6px 1px var(--dark-bg);
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: 5rem;
+}
+
+
+
+.projectLinks a {
+  color: var(--dark-text);
+  font-weight: 400;
+  text-decoration: none;
+}
+.projectLinks a:hover {
+  text-decoration: underline;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .project {
+    --width-height: 32.33vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .project {
+    width: 100%;
+  }
+}
+
+.projects {
+  padding: 2rem;
 }
