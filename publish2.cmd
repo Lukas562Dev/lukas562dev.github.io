@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo Adding everything to local git...
+echo Staging everything to local git...
 echo.
 git add .
 echo.
@@ -12,7 +12,7 @@ echo.
 git commit -m "%localGITcommit%"
 echo.
 echo.
-echo Pushing to github...
+echo Pushing to origin (github)...
 echo.
 git push -u origin master
 echo.
