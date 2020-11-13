@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lukas's Binary Clock!</title>
+  <style>
+    body {
+      background-color: #2c2c33;
+      color: white;
+      margin: 0px;
+      font-family: 'Lato', sans-serif;
+    }
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    
+    .bits {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bits * {
+      font-family: 'Roboto Mono', monospace;
+      text-align: center;
+      margin: auto;
+    }
+
+    .num {
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .col {
+      padding: 1rem;
+    }
+
+    .bit {
+      width: 3rem;
+      height: 4rem;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.37);
+    }
+
+    .bit[on] {
+      background-color: rgb(47, 255, 141);
+    }
+
+    .bitsTxt {
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    #clock {
+      width: 70%;
+      min-width: 240px;
+      text-align: center;
+      margin: auto;
+    }
+
+    @media screen and (min-width: 1200px) {
+      #clock {
+        width: 840px
+      }
+    }
+
+    .back {
+      font-size: 3rem;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .link {
+      color: white;
+    }
+
+  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  
+  <noscript>You need to enable JavaScript to make this webpage work</noscript>
+  <button class="back" onclick="history.back()">🔙</button>
+  <div id="clock">
+    <h1>Binary Clock</h1>
+    <a href="../" class="link">Back to website</a>
+    <div class="row">
+      <div class="hours col">
+        <h2>H</h2>
+        <div class="bits"></div>
+        <h2 class="num">0</h2>
+        <div class="bitsTxt">000000</div>
+      </div>
+      <div class="mins col">
+        <h2>M</h2>
+        <div class="bits"></div>
+        <h2 class="num">0</h2>
+        <div class="bitsTxt">000000</div>
+      </div>
+      <div class="secs col">
+        <h2>S</h2>
+        <div class="bits"></div>
+        <h2 class="num">0</h2>
+        <div class="bitsTxt">000000</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    
+    const bitsLen = 6;
+
+    var bits = document.querySelectorAll('.bits');
+
+    for (let i = 0; i < bits.length; i++) {
+      const bitsContainer = bits[i];
+      for (let i2 = 0; i2 < bitsLen; i2++) {
+        var bitEl = document.createElement('div');
+        bitEl.classList.add('bit');
+        bitsContainer.append(bitEl);
+      }
+    }
+    
+    // loop
+    var clockTimer = setInterval(() => {
+      console.log('loopStart');
+      
+      var clock = document.querySelector('#clock');
+      var now = new Date(Date.now());
+
+      var secs = now.getSeconds();
+      var mins = now.getMinutes();
+      var hours = now.getHours();
+
+      var secsBits = secs.toString(2).split('');
+      while (secsBits.length < bitsLen)
+        secsBits.unshift('0');
+      var minsBits = mins.toString(2).split('');
+      while (minsBits.length < bitsLen)
+        minsBits.unshift('0');
+      var hoursBits = hours.toString(2).split('');
+      while (hoursBits.length < bitsLen)
+        hoursBits.unshift('0');
+
+      document.querySelector('.secs .num').textContent = secs;
+      document.querySelector('.secs .bitsTxt').textContent = secsBits.join('');
+      document.querySelector('.mins .num').textContent = mins;
+      document.querySelector('.mins .bitsTxt').textContent = minsBits.join('');
+      document.querySelector('.hours .num').textContent = hours;
+      document.querySelector('.hours .bitsTxt').textContent = hoursBits.join('');
+
+      var secsBitsEl = document.querySelector('.secs .bits');
+      var minsBitsEl = document.querySelector('.mins .bits');
+      var hoursBitsEl = document.querySelector('.hours .bits');
+
+      var forEachFn = (bitEl, i, bits) => {
+        bitEl.setAttribute('index', i);
+        var bit = bits[i] || 0;
+        var isOn = bit == 1;
+        bitEl.setAttribute('bit', bits[i]);
+        isOn
+          ? bitEl.setAttribute('on', 'on')
+          : bitEl.removeAttribute('on');
+      }
+
+      secsBitsEl.childNodes
+        .forEach((bitEl, i) => forEachFn(bitEl, i, secsBits));
+      minsBitsEl.childNodes
+        .forEach((bitEl, i) => forEachFn(bitEl, i, minsBits));
+      hoursBitsEl.childNodes
+        .forEach((bitEl, i) => forEachFn(bitEl, i, hoursBits));
+      
+      console.log('loopEnd');
+    }, 1000);
+
+  </script>
+</body>
+</html>
