@@ -226,3 +226,41 @@ body {
 .projects {
   padding: 2rem;
 }
+
+.writePost {
+  width: 70vw;
+  text-align: center;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 2rem;
+}
+
+#writePostForm {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .formData {
+    width: 200px;
+    margin: auto;
+  }
+}
+
+.formData {
+  text-align: left;
+  padding: 0.5rem;
+  height: 90px
+}
+.formData:hover {
+  background-color: #444f571e;
+}
+.formLabel {
+  width: 100%;
+}
+.formInput {
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}

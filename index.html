@@ -171,6 +171,29 @@
       <a id="authenticate">Authenticate</a>
       <div id="firebaseui-auth-container"></div>
     </div>
+    <div class="writePost">
+      <a id="write-post"></a>
+      <form id="writePostForm" onsubmit="return null;">
+        
+        <div class="formData">
+          <label class="formLabel" for="postTitle">Title</label> <br/>
+          <input class="formInput" id="postTitle" name="postTitle" type="text"> <br/>
+        </div>
+
+        
+        <div class="formData">
+          <label class="formLabel" for="postContent">Content</label> <br/>
+          <input class="formInput" id="postContent" name="postContent" type="text"> <br/>
+        </div>
+
+
+        <div class="formData">
+          <label class="formLabel" for="postTags">Tags (Separate by ',')</label> <br/>
+          <input class="formInput" id="postTags" name="postTags" type="text"> <br/>
+        </div>
+
+      </form>
+    </div>
   </main>
   <footer>(c) LukasDoesDev 2020</footer>
 </body>
