@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lukas's Binary Clock!</title>
   <style>
+
+
+    :root {
+      --blue: #46a6eb;
+      --dark-blue: #1681ce;
+      --green: #6dd368;
+      --dark-green: #3cb936;
+      --red: #e21157;
+      --dark-red: #9b0c3c;
+    }
+
+
+
+
     body {
       background-color: #2e2e2e;
       color: white;
@@ -47,12 +61,6 @@
       --transition-length: 0.75s
       transition: background-color var(--transition-length);
       margin: 0.3rem;
-      --blue: #46a6eb;
-      --dark-blue: #1681ce;
-      --green: #6dd368;
-      --dark-green: #3cb936;
-      --red: #e21157;
-      --dark-red: #9b0c3c;
     }
 
     .bit div {
@@ -71,17 +79,20 @@
       background-color: rgb(47, 255, 141);
     }
 
-    .bits[color=a] .bit[on] { background-color: var(--blue); }
-    .bits[color=b] .bit[on] { background-color: var(--green); }
-    .bits[color=c] .bit[on] { background-color: var(--red); }
+    .col[color=a] .bit[on] { background-color: var(--blue); }
+    .col[color=b] .bit[on] { background-color: var(--green); }
+    .col[color=c] .bit[on] { background-color: var(--red); }
 
-    .bits[color=a] .bit[on] div { color: var(--dark-blue); }
-    .bits[color=b] .bit[on] div { color: var(--dark-green); }
-    .bits[color=c] .bit[on] div { color: var(--dark-red); }
+    .col[color=a] .bit[on] div { color: var(--dark-blue); }
+    .col[color=b] .bit[on] div { color: var(--dark-green); }
+    .col[color=c] .bit[on] div { color: var(--dark-red); }
 
-    .bits[color=a][on] ~ .bitsTxt { color: var(--dark-blue); }
-    .bits[color=b][on] ~ .bitsTxt { color: var(--dark-green); }
-    .bits[color=c][on] ~ .bitsTxt { color: var(--dark-red); }
+    .col[color=a] .num,
+    .col[color=a] .bitsTxt { color: var(--dark-blue); }
+    .col[color=b] .num,
+    .col[color=b] .bitsTxt { color: var(--dark-green); }
+    .col[color=c] .num,
+    .col[color=c] .bitsTxt { color: var(--dark-red); }
 
     .bitsTxt {
       font-family: 'Roboto Mono', monospace;
@@ -159,7 +170,7 @@
     for (let i = 0; i < bits.length; i++) {
       var bitsContainer = bits[i];
       var colorType = ['a', 'b', 'c'][i]
-      bitsContainer.setAttribute('color', colorType);
+      bitsContainer.parentElement.setAttribute('color', colorType);
       for (let i2 = 0; i2 < bitsLen; i2++) {
         var bitEl = document.createElement('div');
         bitEl.classList.add('bit');
