@@ -6,7 +6,7 @@
   <title>Lukas's Binary Clock!</title>
   <style>
     body {
-      background-color: #2c2c33;
+      background-color: #2e2e2e;
       color: white;
       margin: 0px;
       font-family: 'Lato', sans-serif;
@@ -28,26 +28,60 @@
       margin: auto;
     }
 
-    .num {
-      font-family: 'Roboto Mono', monospace;
+    .bits-label {
+      color: #1c1c1c;
+      font-size: 3rem;
+      margin: 0.2rem;
     }
 
-    .col {
-      padding: 1rem;
-    }
+    .num { font-family: 'Roboto Mono', monospace; }
+
+    .col { padding: 1rem; }
 
     .bit {
-      width: 4rem;
-      height: 5rem;
+      position: relative;
+      width: 3rem;
+      height: 4rem;
       border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.37);
-      transition: background-color 0.75s;
-      margin: 0.5rem;
+      background-color: #1c1c1c;
+      --transition-length: 0.75s
+      transition: background-color var(--transition-length);
+      margin: 0.3rem;
+      --blue: #46a6eb;
+      --dark-blue: #1681ce;
+      --green: #6dd368;
+      --dark-green: #3cb936;
+      --red: #e21157;
+      --dark-red: #9b0c3c;
+    }
+
+    .bit div {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: transparent;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      transition: color var(--transition-length);
     }
 
     .bit[on] {
       background-color: rgb(47, 255, 141);
     }
+
+    .bits[color=a] .bit[on] { background-color: var(--blue); }
+    .bits[color=b] .bit[on] { background-color: var(--green); }
+    .bits[color=c] .bit[on] { background-color: var(--red); }
+
+    .bits[color=a] .bit[on] div { color: var(--dark-blue); }
+    .bits[color=b] .bit[on] div { color: var(--dark-green); }
+    .bits[color=c] .bit[on] div { color: var(--dark-red); }
+
+    .bits[color=a][on] ~ .bitsTxt { color: var(--dark-blue); }
+    .bits[color=b][on] ~ .bitsTxt { color: var(--dark-green); }
+    .bits[color=c][on] ~ .bitsTxt { color: var(--dark-red); }
 
     .bitsTxt {
       font-family: 'Roboto Mono', monospace;
@@ -93,19 +127,19 @@
     <a href="../" class="link">Back to website</a>
     <div class="row">
       <div class="hours col">
-        <h2>H</h2>
+        <h2 class="bits-label">H</h2>
         <div class="bits"></div>
         <h2 class="num">0</h2>
         <div class="bitsTxt">000000</div>
       </div>
       <div class="mins col">
-        <h2>M</h2>
+        <h2 class="bits-label">M</h2>
         <div class="bits"></div>
         <h2 class="num">0</h2>
         <div class="bitsTxt">000000</div>
       </div>
       <div class="secs col">
-        <h2>S</h2>
+        <h2 class="bits-label">S</h2>
         <div class="bits"></div>
         <h2 class="num">0</h2>
         <div class="bitsTxt">000000</div>
@@ -118,13 +152,22 @@
 
     const bitsLen = 6;
 
+    const bitSizes = [32, 16, 8, 4, 2, 1];
+
     var bits = document.querySelectorAll('.bits');
 
     for (let i = 0; i < bits.length; i++) {
-      const bitsContainer = bits[i];
+      var bitsContainer = bits[i];
+      var colorType = ['a', 'b', 'c'][i]
+      bitsContainer.setAttribute('color', colorType);
       for (let i2 = 0; i2 < bitsLen; i2++) {
         var bitEl = document.createElement('div');
         bitEl.classList.add('bit');
+
+        var bitSize = document.createElement('div');
+        bitSize.textContent = bitSizes[i2];
+        bitEl.append(bitSize);
+
         bitsContainer.append(bitEl);
       }
     }
