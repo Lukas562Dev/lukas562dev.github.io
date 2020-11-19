@@ -16,7 +16,7 @@
       flex-direction: row;
       justify-content: space-around;
     }
-    
+
     .bits {
       display: flex;
       flex-direction: column;
@@ -41,6 +41,7 @@
       height: 4rem;
       border-radius: 10px;
       background-color: rgba(0, 0, 0, 0.37);
+      transition: background-color 0.75s;
     }
 
     .bit[on] {
@@ -80,10 +81,10 @@
 
   </style>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+
   <noscript>You need to enable JavaScript to make this webpage work</noscript>
   <button class="back" onclick="history.back()">🔙</button>
   <div id="clock">
@@ -113,7 +114,7 @@
 
   <script>
 
-    
+
     const bitsLen = 6;
 
     var bits = document.querySelectorAll('.bits');
@@ -126,11 +127,11 @@
         bitsContainer.append(bitEl);
       }
     }
-    
+
     // loop
     var clockTimer = setInterval(() => {
       console.log('loopStart');
-      
+
       var clock = document.querySelector('#clock');
       var now = new Date(Date.now());
 
@@ -175,7 +176,7 @@
         .forEach((bitEl, i) => forEachFn(bitEl, i, minsBits));
       hoursBitsEl.childNodes
         .forEach((bitEl, i) => forEachFn(bitEl, i, hoursBits));
-      
+
       console.log('loopEnd');
     }, 1000);
 
