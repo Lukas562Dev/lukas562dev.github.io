@@ -21,3 +21,10 @@ h5 {
 h6 {
   font-size: 0.67em;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+}

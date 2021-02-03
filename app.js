@@ -1,13 +1,10 @@
 // app.js
 console.log('Hello World!');
 console.log('Lukas\'s Website!');
-console.log('Example project generated using SmartCLI');
-
-var test = (a, b, c) => a + b + c;
-console.log(test('1', '2', '3')); // 123?
+console.log('Source code at https://github.com/LukasDoesDev/lukasdoesdev.github.io');
 
 
-var projectsListEl = document.querySelector('.projectsList');
+var projectsListEl = document.querySelector('.projectsList') || document.querySelector('.square-container');
 
 
 fetch('https://api.github.com/users/LukasDoesDev/repos')
@@ -19,7 +16,7 @@ fetch('https://api.github.com/users/LukasDoesDev/repos')
     for (let i = 0; i < repos.length; i++) {
       const repo = repos[i];
       // create item(s)
-      projectsListEl.innerHTML += makeRepoEl(repo);
+      makeRepoEl(repo, projectsListEl);
     }
   })
   .catch((err) => {
@@ -27,22 +24,43 @@ fetch('https://api.github.com/users/LukasDoesDev/repos')
   })
 
 
-function makeRepoEl(repo) {
-  return `
-        <div class="project">
+function makeRepoEl(repo, element) {
 
-          <div class="projectUpper">
-            <h3 class="projectTitle">${DOMPurify.sanitize(repo.name)}</h3>
-            <span class="projectDesc">${DOMPurify.sanitize(repo.description)}</span>
-          </div>
+  cssnames = {
+    project: ['project'],
+    projectContent: ['projectContent'],
+    projectTitle: ['projectTitle'],
+    projectDesc: ['projectDesc'],
+    projectLink: ['projectLink'],
+  }
 
-          <div class="projectLower">
-            <div class="projectLinks">
-              <a href="${DOMPurify.sanitize(repo.html_url)}">Github</a>
-            </div>
-          </div>
+  var projectDiv = document.createElement('div');
+  projectDiv.classList.add(cssnames.project);
 
-        </div>`
+  var projectContent = document.createElement('div');
+  projectContent.classList.add(cssnames.projectContent);
+  projectDiv.appendChild(projectContent);
+
+  var projectTitle = document.createElement('h3');
+  projectTitle.classList.add(cssnames.projectTitle);
+  projectTitle.textContent = repo.name;
+  projectContent.appendChild(projectTitle);
+
+  var projectDesc = document.createElement('span');
+  projectDesc.classList.add(cssnames.projectDesc);
+  projectDesc.textContent = repo.description;
+  projectContent.appendChild(projectDesc);
+
+  projectContent.appendChild(document.createElement('br'));
+  projectContent.appendChild(document.createElement('br'));
+
+  var githubLink = document.createElement('a');
+  githubLink.classList.add(cssnames.projectLink);
+  githubLink.setAttribute('href', repo.html_url);
+  githubLink.textContent = 'Github';
+  projectContent.appendChild(githubLink);
+
+  element.appendChild(projectDiv);
 }
 
 

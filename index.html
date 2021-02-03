@@ -1,201 +1,36 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lukas's Website!</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="app.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/0.8.2/purify.min.js"></script>
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
-
-  <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: "AIzaSyD3yQMMSgcz79a8B2lZfhLvsVhzGSQv-Zw",
-      authDomain: "lukasdoesdev-website.firebaseapp.com",
-      databaseURL: "https://lukasdoesdev-website.firebaseio.com",
-      projectId: "lukasdoesdev-website",
-      storageBucket: "lukasdoesdev-website.appspot.com",
-      messagingSenderId: "1078542062611",
-      appId: "1:1078542062611:web:379a865ba7ed60acf51be6",
-      measurementId: "G-HEQXHEHL5N"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-
-  <script src="https://www.gstatic.com/firebasejs/ui/4.7.0/firebase-ui-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.0/firebase-ui-auth.css" />
-  <script type="text/javascript">
-    // FirebaseUI config.
-    var uiConfig = {
-      signInSuccessUrl: '?login-code=success',
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        //firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        //firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-      ],
-      // tosUrl and privacyPolicyUrl accept either url string or a callback
-      // function.
-      // Terms of service url/callback.
-      tosUrl: function() {
-        alert('No ToS yet');
-        //window.location.assign('<your-tos-url>');
-      },
-      // Privacy policy url/callback.
-      privacyPolicyUrl: function() {
-        alert('No privacy policy yet');
-        //window.location.assign('<your-privacy-policy-url>');
-      }
-    };
-
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-    initApp = function() {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var uid = user.uid;
-          var phoneNumber = user.phoneNumber;
-          var providerData = user.providerData;
-          user.getIdToken().then(function(accessToken) {
-            document.getElementById('sign-in-status').textContent = 'Signed in';
-            document.getElementById('sign-in').textContent = 'Sign out';
-            document.getElementById('account-details').textContent = JSON.stringify({
-              displayName: displayName,
-              email: email,
-              emailVerified: emailVerified,
-              phoneNumber: phoneNumber,
-              photoURL: photoURL,
-              uid: uid,
-              accessToken: accessToken,
-              providerData: providerData
-            }, null, '  ');
-          });
-        } else {
-          // User is signed out.
-          document.getElementById('sign-in-status').textContent = 'Signed out';
-          document.getElementById('sign-in').textContent = 'Sign in';
-          document.getElementById('account-details').textContent = 'null';
-        }
-      }, function(error) {
-        console.log(error);
-      });
-    };
-
-    window.addEventListener('load', function() {
-      initApp()
-    });
-  </script>
-
-</head>
-<body>
-  <!-- <h1>Hello World!</h1>
-  <h2>Lukas's Website!</h2>
-  <p>Example project generated using SmartCLI.</p> -->
-  <nav class="nav">
-    <h1><a href="/">Lukas's Website!</a></h1>
-    <a href="/binary-clock">Binary Clock</a>
-  </nav>
-  <header class="header">
-    <div class="headerContent center">
-      <div class="headerLeft">
-        <h1>Hello, World! I'm Lukas,</h1>
-        <h2>
-          a self taught programmer from Finland who has expirience in
-          <a href="https://en.wikipedia.org/wiki/HTML" class="headerDescLink">HTML</a>,
-          <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" class="headerDescLink">CSS</a>,
-          JavaScript (<a href="https://nodejs.org" class="headerDescLink">Node.js</a> &
-          <a href="https://deno.land/" class="headerDescLink">Deno</a>),
-          <a href="https://reactjs.org/" class="headerDescLink">React</a>,
-          <a href="https://reactnative.dev/" class="headerDescLink">React Native</a>,
-          <a href="https://www.electronjs.org/" class="headerDescLink">Electron</a>,
-          <a href="https://angular.io/" class="headerDescLink">Angular</a>,
-          <a href="https://flutter.dev/" class="headerDescLink">Flutter</a>
-          and some other cool frameworks and libraries
-        </h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lukas's Website!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="innerHeader container">
+        <h1><a href="/" class="lukas-header">Lukas's Website!</a></h1>
       </div>
-      <div class="headerRight">
-        <!-- <div class="headerRightIMG"></div> -->
-        <img src="./undraw/undraw_code_review.svg" class="headerRightIMG" alt="Image: Lukas looking at code">
+    </header>
+    <section id="hero">
+      <div class="hero-container">
+        <h1 class="lukas-header">ThatOneLukas</h1>
+        <h2>Homemade programmer</h2>
       </div>
-    </div>
-  </header>
-  <main class="main content">
-    <div class="projects">
+    </section>
+    <main class="main content">
+      <div class="projects">
+        <h1>Projects:</h1>
 
-      <h1 class="projectsHeader">Projects:</h1>
-
-      <div class="projectsList">
-        <!-- <div class="project">
-
-          <div class="projectUpper">
-            <h3 class="projectTitle">Exaple Project</h3>
-            <span class="projectDesc">This is an Example Project. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-          </div>
-
-          <div class="projectLower">
-            <div class="projectLinks">
-              <a href="https://github.com/LukasDoesDev/example">Github</a>
-              <a href="https://example.com">Website</a>
-            </div>
-          </div>
-
-        </div> -->
+        <div class="projectsList"></div>
       </div>
-
-    </div>
-    <div class="auth-content">
-      <a id="authenticate">Authenticate (W.I.P.)</a>
-      <div id="firebaseui-auth-container"></div>
-    </div>
-    <div class="writePost">
-      <a id="write-post"></a>
-      <form id="writePostForm" onsubmit="return null;">
-        
-        <div class="formData">
-          <label class="formLabel" for="postTitle">Title</label> <br/>
-          <input class="formInput" id="postTitle" name="postTitle" type="text"> <br/>
-        </div>
-
-        
-        <div class="formData">
-          <label class="formLabel" for="postContent">Content</label> <br/>
-          <input class="formInput" id="postContent" name="postContent" type="text"> <br/>
-        </div>
-
-
-        <div class="formData">
-          <label class="formLabel" for="postTags">Tags (Separate by ',')</label> <br/>
-          <input class="formInput" id="postTags" name="postTags" type="text"> <br/>
-        </div>
-
-      </form>
-    </div>
-  </main>
-  <footer>(c) LukasDoesDev 2020</footer>
-</body>
+    </main>
+    <footer id="footer">
+      <div class="container">
+        <h2>(c) Copyright ThatOneLukas 2021</h2>
+      </div>
+    </footer>
+  </body>
 </html>
