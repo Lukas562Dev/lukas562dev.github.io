@@ -31,7 +31,7 @@ function makeRepoEl(repo, element) {
     projectContent: ['projectContent'],
     projectTitle: ['projectTitle'],
     projectDesc: ['projectDesc'],
-    projectLink: ['projectLink'],
+    projectLink: ['link'],
   }
 
   var projectDiv = document.createElement('div');
