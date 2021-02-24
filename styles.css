@@ -119,12 +119,12 @@ body {
   margin: 0;
 }
 
-.projectLink {
+.link {
   color: var(--dark-text-lighter);
   font-weight: 400;
   text-decoration: none;
 }
-.projectLink:hover {
+.link:hover {
   color: var(--dark-text);
   text-decoration: underline;
 }
