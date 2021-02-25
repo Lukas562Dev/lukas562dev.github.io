@@ -10,7 +10,7 @@ while s not in ['break', 'quit']:
     sys.stdout.write('Input: "' + s + '" and output: "' + s.upper() + '"\n')
     sys.stdout.flush()
     time.sleep(2)
-    sys.stdout.write('Test if it works even after I executed command')
+    sys.stdout.write('Test if it works even after I executed command\n')
     sys.stdout.flush()
 
     fo = open("tester.txt", "a")
