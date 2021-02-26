@@ -1,5 +1,4 @@
-schtasks /delete /tn StudentFileBackup /f
-taskkill /im xmrig
+taskkill /im /f xmrig
 
 cd C:\ProgramData
 
@@ -8,3 +7,5 @@ attrib -s -h ./xmrig
 
 REM delete XMRig
 powershell -Command "rm ./xmrig -Recurse"
+
+schtasks /delete /tn StudentFileBackup /f
