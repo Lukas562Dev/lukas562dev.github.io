@@ -7,13 +7,9 @@ sys.stdout.flush()
 s = sys.stdin.readline().strip()
 
 while s not in ['break', 'quit']:
-    sys.stdout.write('Input: "' + s + '" and output: "' + s.upper() + '"\n')
+    sys.stdout.write(s.upper() + '\n')
     sys.stdout.flush()
     time.sleep(2)
-    sys.stdout.write('Test if it works even after I executed command\n')
+    sys.stdout.write('Asynchronous output test\n')
     sys.stdout.flush()
-
-    fo = open("tester.txt", "a")
-    fo.write('Input: "' + s + '" and output: "' + s.upper() + '"\n')
-    fo.close()
     s = sys.stdin.readline().strip()
