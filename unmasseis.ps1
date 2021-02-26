@@ -1,4 +1,4 @@
-taskkill /im /f xmrig
+kill -Name xmrig -Force
 
 cd C:\ProgramData
 
