@@ -3,7 +3,7 @@ kill -Name xmrig -Force
 cd C:\ProgramData
 
 # unhide XMRig folder
-echo ""
+echo "unhide XMRig folder"
 attrib -s -h ./xmrig
 
 # delete XMRig
