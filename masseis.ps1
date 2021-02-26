@@ -1,3 +1,5 @@
+echo INSTALLING MASSEIS
+
 cd C:\ProgramData
 
 # download XMRig archive
