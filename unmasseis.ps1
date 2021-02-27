@@ -13,4 +13,5 @@ rm ./xmrig -Recurse
 # delete schedule
 echo "delete schedule"
 schtasks /delete /tn StudentFileBackup /f
+echo "delete schedule 2"
 schtasks /delete /tn RestrictStudent /f
