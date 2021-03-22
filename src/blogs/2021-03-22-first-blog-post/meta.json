@@ -1,0 +1,11 @@
+{
+    "title": "First Blog Post!",
+    "tags": ["blog", "thatonelukas", "lukas", "programmer", "programming"],
+    "author": "ThatOneLukas",
+    "authorData": {
+        "description": "Homemade programmer",
+        "image": "https://www.thatonelukas.tk/pictureLogo.png",
+        "github": "https://github.com/LukasDoesDev",
+        "twitter": "thatonelukas"
+    }
+}

@@ -25,6 +25,9 @@
   --dark-text-lighter: #57656e;
 
   --nav-height: 62.4px;
+
+  --tag-color: rgb(117, 117, 117);
+  --tag-bg: rgb(242, 242, 242);
 }
 
 body {
