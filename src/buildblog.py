@@ -8,12 +8,15 @@ import sys
 import urllib.parse
 from bloghelpers import generate_opengraph_meta, generate_html_meta, generate_twitter_meta, generate_head_html, twitter_logo, generate_html
 from blogconfig import logo, website_domain, blog_location
+from mdtohtml import md_to_html
 
+"""
 try:
     import markdown as md
 except ImportError:
     print('The "markdown" pip package is needed')
     sys.exit(1)
+"""
 
 script_path = inspect.getfile(inspect.currentframe())             # src/buildblog.py
 src_directory = os.path.dirname(os.path.abspath(script_path))     # src
@@ -30,7 +33,7 @@ def generate_blog_html(blog):
     blog_url = f'{blog_location}/{blog.blog_id}'
     blog_author_data = blog_meta['authorData']
     head = f'''
-{generate_head_html(blog.title, 'blog.css')}
+{generate_head_html(blog.title, ['blog.css', 'markdown.css'])}
 
 {generate_html_meta(blog_url, blog.author, blog_meta['tags'])}
 
@@ -39,13 +42,16 @@ def generate_blog_html(blog):
 {generate_twitter_meta(blog.title, blog_url)}
 '''.strip()
 
-    blog_html = md.markdown(blog.markdown_data)
+    # blog_html = md.markdown(blog.markdown_data, output_format='html5')
+    blog_html = md_to_html(blog.markdown_data)
 
     return generate_html(head, f'''
 <article class="blog container">
     <div class="blogContent">
         <h2>{blog.title}</h2>
-        {blog_html}
+        <div class="markdown-body">
+            {blog_html}
+        </div>
     </div>
     <div class="below-post">
         <div class="tags">
@@ -146,7 +152,7 @@ def generate_list_html(posts):
         list_items_html = list_items_html + generate_list_item_html(post) + '\n'
     
     head = f'''
-{generate_head_html('Blog List', 'blogList.css')}
+{generate_head_html('Blog List', ['blogList.css'])}
 
 {generate_html_meta(blog_location, 'ThatOneLukas', ['lukas', 'thatonelukas', 'programmer', 'programming', 'projects'])}
 

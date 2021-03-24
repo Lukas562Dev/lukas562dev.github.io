@@ -51,3 +51,8 @@
   background-color: var(--tag-bg);
   color: var(--tag-color);
 }
+
+
+.blogContent {
+  padding-bottom: 3rem;
+}

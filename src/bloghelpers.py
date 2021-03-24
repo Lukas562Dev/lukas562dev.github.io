@@ -40,7 +40,8 @@ def generate_twitter_meta(title, url):
 <meta name="twitter:image" content="{logo}">
     '''.strip()
 
-def generate_head_html(title, stylesheet):
+def generate_head_html(title, stylesheets):
+    stylesheets_html = '\n'.join(map(lambda x: '<link rel="stylesheet" href="/static/' + x + '" />', stylesheets))
     return f'''
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +53,7 @@ def generate_head_html(title, stylesheet):
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <link rel="stylesheet" href="/static/styles.css" />
-<link rel="stylesheet" href="/static/{stylesheet}" />
+{stylesheets_html}
     '''.strip()
 
 def twitter_logo(color):
