@@ -5,7 +5,7 @@ import sys
 if __name__ == "__main__":
     sys.exit(1)
 
-import inspect, os, shutil, json, urllib.parse
+import inspect, os, shutil, json, urllib.parse, datetime
 
 from mdtohtml import md_to_html
 from config import blog_location, base_url
@@ -18,13 +18,14 @@ blogpost_dst_dir = os.path.join(src_dir, os.pardir, 'blog')              # ./blo
 blogpost_list_file_path = os.path.join(blogpost_dst_dir, 'index.html')   # ./blog/index.html
 
 class BlogPost():
-    def __init__(self, meta_data, markdown_data, blog_id, year, month, day):
+    def __init__(self, meta_data, markdown_data, post_id, year, month, day):
         self.meta_data = meta_data
         self.markdown_data = markdown_data
-        self.blog_id = blog_id
+        self.post_id = post_id
         self.title = meta_data['title']
         self.author = meta_data['author']
-        self.date = f'{year}-{month}-{day}'
+        self.date_str = f'{year}-{month}-{day}'
+        self.date = datetime.datetime.strptime(f'{year}-{month}-{day}', '%Y-%m-%d')
     
     def __repr__(self):
         return 'BlogPost(' + self.title + ')'
@@ -52,7 +53,7 @@ def generate_blogpost_html(post):
     post_meta = post.meta_data
     post_author_data = post_meta['authorData']
 
-    post_url = f'{blog_location}/{post.blog_id}'
+    post_url = f'{blog_location}/{post.post_id}'
 
     post_html = f'''
 <article itemscope="" itemtype="http://schema.org/BlogPosting">
@@ -64,7 +65,7 @@ def generate_blogpost_html(post):
                     <span itemprop="name">{post.author}</span>
                 </span>
                 <span class="blogpost-date">
-                    <time datetime="{post.date}T00:00:00.000Z" itemprop="datePublished">{post.date}</time>
+                    <time datetime="{post.date_str}T00:00:00.000Z" itemprop="datePublished">{post.date_str}</time>
                 </span>
                 <span class="blogpost-tags">
                     | Tags: {', '.join(post_meta['tags'])}
@@ -91,11 +92,11 @@ def generate_blogpost_html(post):
         )
 
 def blogpost_list_item(post):
-    post_url = f'{blog_location}/{post.blog_id}'
+    post_url = f'{blog_location}/{post.post_id}'
 
     return f'''
 <li class="post-list-item">
-    <time datetime="{post.date}T00:00:00.000Z" itemprop="datePublished">{post.date}</time>
+    <time datetime="{post.date_str}T00:00:00.000Z" itemprop="datePublished">{post.date_str}</time>
     <a href="{post_url}">{post.title}</a>
 </li>
     '''.strip()
@@ -111,6 +112,7 @@ def blogpost_list_year(year):
             for post_id in os.listdir(post_day_dir):
                 post_dir = os.path.join(post_day_dir, post_id)
                 posts.append(dir_to_blogpost(post_dir))
+    posts = sorted(posts, key=lambda post: post.date)
     return f'''
 <li class="post-list-year">
     <h2>{year}</h2>
@@ -149,9 +151,11 @@ def build_blogposts():
                     print(f'Written {post_day}.{post_month}.{post_year} {post_index_path}')
 
 def build_blogpost_list():
+    years = os.listdir(blogpost_src_dir)
+    years = sorted(years, key=lambda year: int(year))
     blogpost_list_raw_html = f'''
 <ul class="post-list">
-    {''.join(map(blogpost_list_year, os.listdir(blogpost_src_dir)))}
+    {''.join(map(blogpost_list_year, years))}
 </ul>
     '''.strip()
     blogpost_list_html = generate_html(
