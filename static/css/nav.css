@@ -1,0 +1,14 @@
+#nav {
+  display: flex;
+  gap: 1.5rem;
+}
+#nav a {
+  color: var(--color-accent);
+  letter-spacing: 0.01em;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 0.8rem;
+}
+#nav a:last-child {
+  border: none;
+}

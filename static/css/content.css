@@ -1,0 +1,16 @@
+#content {
+  max-width: 48rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding-top: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow-wrap: break-word;
+}
+
+.top-section {
+  width: 100%;
+}

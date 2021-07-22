@@ -1,0 +1,62 @@
+/* styles.css */
+
+@import url('normalize.css');
+
+@import url('header.css');
+@import url('nav.css');
+@import url('main.css');
+@import url('content.css');
+@import url('footer.css');
+
+:root {
+  --font: 'Menlo', 'Meslo LG', monospace;
+
+  --bg-color: #191b1d;
+  --color-primary: #c6c5c7;
+  --color-secondary: #9c9c9e;
+  --color-accent: #2282b9;
+
+  --link-underline: linear-gradient(
+    transparent,
+    transparent 5px,
+    var(--color-primary) 5px,
+    var(--color-primary)
+  );
+  --link-underline-hover: linear-gradient(
+    transparent,
+    transparent 5px,
+    var(--color-accent) 5px,
+    var(--color-accent)
+  );
+}
+
+body {
+  font-weight: 400;
+  font-size: 14px;
+  font-family: var(--font);
+  line-height: 1.725;
+  background-color: var(--bg-color);
+  color: var(--color-secondary);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-rendering: geometricPrecision;
+}
+
+a {
+  color: var(--dark-text-lighter);
+  font-weight: 400;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--dark-text);
+  text-decoration: underline;
+}
+
+@font-face {
+  font-style: normal;
+  font-family: 'Meslo LG';
+  src: local('Meslo LG S'),
+    url('/static/MesloLGS-Regular.ttf') format('truetype');
+}
