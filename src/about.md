@@ -11,7 +11,7 @@ I like to code and play games.
 
 Email: [lukas@thatonelukas.tk](mailto:lukas@thatonelukas.tk)
 
-Twitter: [@ThatOneLukas](https://twitter.com/ThatOneLukas)
+Twitter: [@thatonelukas](https://twitter.com/thatonelukas)
 
 GitHub: [@LukasDoesDev](https://github.com/LukasDoesDev)
 
