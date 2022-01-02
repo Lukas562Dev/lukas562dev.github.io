@@ -1,8 +1,8 @@
 {
-    "title": "Capturing DNS Requests",
-    "shortDescription": "How to capture DNS requests in Linux using the tcpdump utility.",
-    "tags": ["linux", "dns"],
-    "created": "2021-04-03",
+    "title": "Switching from Radeon to AMDGPU",
+    "shortDescription": "How to switch from the Radeon driver to the AMDGPU driver on Arch Linux.",
+    "tags": ["arch linux", "linux", "radeon", "amdgpu", "driver", "mesa"],
+    "created": "2022-01-02",
     "author": "ThatOneLukas",
     "authorData": {
         "description": "Programmer, gamer, Arch user, open-source contributor",
