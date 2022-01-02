@@ -148,7 +148,7 @@ def build_blogposts():
                     with open(post_index_path, 'x') as index_file: 
                         index_file.write(generate_blogpost_html(post))
                     
-                    print(f'Written {post_day}.{post_month}.{post_year} {post_index_path}')
+                    print(f'Wrote {post_day}.{post_month}.{post_year} {post_index_path}')
 
 def build_blogpost_list():
     years = os.listdir(blogpost_src_dir)
@@ -169,4 +169,4 @@ def build_blogpost_list():
         )
     with open(blogpost_list_file_path, 'x') as blogs_file:
         blogs_file.write(blogpost_list_html)
-    print('Written article list')
+    print('Wrote article list')

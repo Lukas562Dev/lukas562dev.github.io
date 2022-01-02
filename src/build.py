@@ -9,7 +9,10 @@ from mdtohtml import md_to_html
 script_path = inspect.getfile(inspect.currentframe())   # ./src/build.py
 src_dir = os.path.dirname(os.path.abspath(script_path)) # ./src
 par_dir = os.path.join(src_dir, os.path.pardir)         # .
+
 index_file_path = os.path.join(par_dir, 'index.html')   # ./index.html
+index_src_file_path = os.path.join(src_dir, 'index.md') # ./src/index.md
+
 about_dir_path = os.path.join(par_dir, 'about')         # ./about/
 about_file_path = os.path.join(about_dir_path, 'index.html') # ./about/index.html
 about_src_file_path = os.path.join(src_dir, 'about.md') # ./src/about.md
@@ -25,17 +28,24 @@ def main():
 
 def create_index_page():
     with open(index_file_path, 'w') as index_file: 
+        with open(index_src_file_path, 'r') as index_src_file:
+            index_page_md = index_src_file.read()
+        index_page_html = f'''
+        <div class="markdown-body">
+            {md_to_html(index_page_md)}
+        </div>
+        '''.strip()
         index_file.write(generate_html(
-            'About', # title
+            'Home', # title
             [], # stylesheets
             base_url, # url
             'ThatOneLukas', # author
             ['blog', 'programming'], # tags
-            'TODO', # content
+            index_page_html, # content
             'Lukas\'s Blog' # description
         ))
     
-    print('Written home page')
+    print('Wrote home page')
 
 def create_about_page():
     if os.path.isdir(os.path.abspath(about_dir_path)):
@@ -51,7 +61,7 @@ def create_about_page():
         </div>
         '''.strip()
         index_file.write(generate_html(
-            'Home', # title
+            'About', # title
             [], # stylesheets
             base_url + '/about', # url
             'ThatOneLukas', # author
@@ -60,7 +70,7 @@ def create_about_page():
             'About Lukas' # description
         ))
     
-    print('Written about page')
+    print('Wrote about page')
 
 if __name__ == "__main__":
     main()
