@@ -11,10 +11,12 @@ How to switch from the Radeon driver to the AMDGPU driver on Arch Linux.
 
 ```bash
 sudo pacman -S mesa vulkan-radeon
-SI_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.si_support=0.*amdgpu.si_support=1\)\|\(amdgpu.si_support=1.*radeon.si_support=0)\)'
+SI_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.si_support=0.*amdgpu.si_support=1\)\|\(amdgpu.si_support=1.*radeon.si_support=0\)'
 sed "/^$SI_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 radeon.si_support=0 amdgpu.si_support=1\"|" /etc/default/grub | sudo tee /etc/default/grub
-CIK_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*radeon.cik_support=0.*amdgpu.cik_support=1|amdgpu.cik_support=1.*radeon.cik_support=0)'
+CIK_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.cik_support=0.*amdgpu.cik_support=1\)\|\(amdgpu.cik_support=1.*radeon.cik_support=0\)'
 sed "/^$CIK_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 radeon.cik_support=0 amdgpu.cik_support=1\"|" /etc/default/grub | sudo tee /etc/default/grub
+BLACKLIST_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*modprobe.blacklist=radeon'
+sed "/^$BLACKLIST_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 modprobe.blacklist=radeon\"|" /etc/default/grub | sudo tee /etc/default/grub
 sed '/^MODULES=(amdgpu/! s|^MODULES=(|MODULES=(amdgpu radeon |' /etc/mkinitcpio.conf | sudo tee /etc/mkinitcpio.conf
 sudo mkinitcpio -P
 ```
@@ -36,17 +38,23 @@ sudo pacman -S mesa
 *You can use both parameters if you are unsure which kernel card you have.*
 * Southern Islands (SI): `radeon.si_support=0 amdgpu.si_support=1`
 * Sea Islands (CIK): `radeon.cik_support=0 amdgpu.cik_support=1`
+*There is an additional parameter, `modprobe.blacklist=radeon` in the script, this is required for amdvlk*
+> You can change `sudo tee /etc/default/grub` to `vimdiff /dev/stdin /etc/default/grub` to preview the changes
 **The following script is for GRUB only**
 ```bash
 # Add the parameters to the `GRUB_CMDLINE_LINUX_DEFAULT` variable in `/etc/default/grub` if they are not there yet.
 
 # SI parameters
-SI_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.si_support=0.*amdgpu.si_support=1\)\|\(amdgpu.si_support=1.*radeon.si_support=0)\)'
+SI_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.si_support=0.*amdgpu.si_support=1\)\|\(amdgpu.si_support=1.*radeon.si_support=0\)'
 sed "/^$SI_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 radeon.si_support=0 amdgpu.si_support=1\"|" /etc/default/grub | sudo tee /etc/default/grub
 
 # CIK parameters
-CIK_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*radeon.cik_support=0.*amdgpu.cik_support=1|amdgpu.cik_support=1.*radeon.cik_support=0)'
+CIK_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.cik_support=0.*amdgpu.cik_support=1\)\|\(amdgpu.cik_support=1.*radeon.cik_support=0\)'
 sed "/^$CIK_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 radeon.cik_support=0 amdgpu.cik_support=1\"|" /etc/default/grub | sudo tee /etc/default/grub
+
+# `radeon` blacklist parameter
+BLACKLIST_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*modprobe.blacklist=radeon'
+sed "/^$BLACKLIST_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 modprobe.blacklist=radeon\"|" /etc/default/grub | sudo tee /etc/default/grub
 ```
 #### Specify the correct module order
 ```bash
