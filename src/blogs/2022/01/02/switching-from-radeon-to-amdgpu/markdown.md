@@ -10,7 +10,7 @@ How to switch from the Radeon driver to the AMDGPU driver on Arch Linux.
 # TL;DR
 
 ```bash
-sudo pacman -S mesa amdvlk
+sudo pacman -S mesa vulkan-radeon
 SI_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.si_support=0.*amdgpu.si_support=1\)\|\(amdgpu.si_support=1.*radeon.si_support=0\)'
 sed "/^$SI_CHECKER/! s|^GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"|GRUB_CMDLINE_LINUX_DEFAULT=\"\1 radeon.si_support=0 amdgpu.si_support=1\"|" /etc/default/grub | sudo tee /etc/default/grub
 CIK_CHECKER='GRUB_CMDLINE_LINUX_DEFAULT=".*\(radeon.cik_support=0.*amdgpu.cik_support=1\)\|\(amdgpu.cik_support=1.*radeon.cik_support=0\)'
@@ -29,7 +29,7 @@ sudo lspci -v | grep 'driver in use: amdgpu' > /dev/null && echo 'Success!' || e
 # Full explanation
 
 ## Installing the driver
-*You can also install amdvlk or vulkan-radeon for Vulkan support*
+*You can also install vulkan-radeon for Vulkan support*
 ```bash
 sudo pacman -S mesa
 ```
