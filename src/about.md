@@ -19,4 +19,4 @@ GitLab: [@LukasDoesDev](https://gitlab.com/LukasDoesDev)
 
 ### Donate
 
-Monero: 4AycwShKZnzYpBk6GxbLQLBeQ1PnqG94Dcgsm5Nsbbn7Z7uyJsdmKpuZ7MKwqiMQwrZfR7aaMK3Bjd8wLy1MTNSTG6y6xNf
+Monero: 87cU1WAiMCWM2Ca2QM1ptkReFJoUThCCodQNYjyy3ZTmCUPxjzGWaPgZWDXmBNmPogPhBX49m7yns4UpCZ1BkyYLSUUq6Z3
