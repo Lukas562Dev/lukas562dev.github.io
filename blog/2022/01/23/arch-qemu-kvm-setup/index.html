@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- index.html -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+<meta name="X-UA-Compatible" content="IE=edge" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arch Linux QEMU and KVM setup | Lukas's Blog!</title>
+
+<!-- Apple Meta Tags -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet" href="/static/css/styles.css" />
+<link rel="stylesheet" href="/static/markdown/markdown.css" />
+<link rel="stylesheet" href="/static/markdown/md-dark.css" />
+<link rel="stylesheet" href="/static/markdown/pandoc-highlighting.css" />
+
+<!-- HTML Meta Tags -->
+<meta property="description" content="How to use KVM, QEMU and virt-manager on Arch Linux."> 
+<meta name="keywords" content="blog, lukas, thatonelukas, linux, kvm, qemu, virt-manager, arch linux"/>
+<meta name="copyright" content="ThatOneLukas">
+<meta name="author" content="ThatOneLukas">
+<meta name="designer" content="ThatOneLukas">
+<meta name="owner" content="ThatOneLukas">
+<meta name="url" content="https://thatonelukas.tk/blog/2022/01/23/arch-qemu-kvm-setup">
+<meta name="identifier-URL" content="https://thatonelukas.tk/blog/2022/01/23/arch-qemu-kvm-setup">
+
+<!-- OpenGraph Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arch Linux QEMU and KVM setup | Lukas's Blog!">
+<meta property="og:site_name" content="Lukas's Blog!">
+<meta property="og:description" content="How to use KVM, QEMU and virt-manager on Arch Linux."> 
+<meta property="og:url" content="https://thatonelukas.tk/blog/2022/01/23/arch-qemu-kvm-setup">
+<meta property="og:image" content="https://thatonelukas.tk/pictureLogo.png">
+<meta property="og:image:secure_url" content="https://thatonelukas.tk/pictureLogo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="400" />
+<meta property="og:image:height" content="400" />
+<meta property="og:image:alt" content="Lukas's Logo" />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary">
+<meta property="twitter:domain" content="thatonelukas.tk">
+<meta property="twitter:url" content="https://thatonelukas.tk/blog/2022/01/23/arch-qemu-kvm-setup">
+<meta name="twitter:title" content="Arch Linux QEMU and KVM setup | Lukas's Blog!">
+<meta property="twitter:description" content="How to use KVM, QEMU and virt-manager on Arch Linux."> 
+<meta name="twitter:image" content="https://thatonelukas.tk/pictureLogo.png">
+    </head>
+    <body>
+        <div id="content">
+            <section class="top-section">
+                <header id="header">
+                    <a href="/"><h1>Lukas's Blog</h1></a>
+                    <nav id="nav">
+                        <a href="/">Home</a>
+                        <a href="/about">About</a>
+                        <a href="/blog">Articles</a>
+                    </nav>
+                </header>
+                <main id="main">
+                    <article itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 class="blogpost-title" itemprop="name headline">Arch Linux QEMU and KVM setup</h1>
+        <div class="blogpost-header-below">
+            <div class="blogpost-meta">
+                <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <span itemprop="name">ThatOneLukas</span>
+                </span>
+                <span class="blogpost-date">
+                    <time datetime="2022-01-23T00:00:00.000Z" itemprop="datePublished">2022-01-23</time>
+                </span>
+                <span class="blogpost-tags">
+                    | Tags: linux, kvm, qemu, virt-manager, arch linux
+                </span>
+            </div>
+            <span class="blogpost-share">
+                <a rel="noopener noreferrer nofollow" target="_blank" href="https://twitter.com/share?url=https%3A//thatonelukas.tk/blog/2022/01/23/arch-qemu-kvm-setup"><svg version="1.1" height="25px" viewBox="0 0 231.104 231.104">
+    <g><path style="fill: #1DA1F2;" d="M4.453,173.33c9.763-1.192,19.663,0.092,29.426-1.512c4.904-0.779,9.396-2.429,13.842-4.171
+    c-11-7.058-20.901-15.125-30.113-24.796c-3.3-3.438-0.917-9.213,3.896-9.35c3.942,0.183,7.792-0.137,11.55-0.917
+    c-9.58-12.146-17.005-25.209-22.78-39.876c-1.558-3.942,3.025-7.929,6.738-6.738c2.154,0.871,4.354,1.467,6.6,1.925
+    c-6.829-16.409-8.25-32.955-4.446-51.106c0.871-4.171,6.371-5.179,9.167-2.429c21.909,21.541,49.593,31.9,79.202,36.85
+    c-2.613-20.259,11.78-41.801,30.663-48.86c15.676-5.821,36.714-1.833,47.256,11.367c7.059-4.446,16.821-5.913,24.659-7.288
+    c4.125-0.688,8.113,3.346,5.684,7.425c-2.842,4.767-5.546,9.854-8.525,14.713c6.05-1.788,12.284-2.888,18.517-3.667
+    c4.492-0.596,7.196,6.325,3.759,9.075c-7.288,5.821-14.53,12.467-22.276,17.784c-0.229,51.472-15.263,94.649-61.235,123.937
+    c-38.319,24.477-109.546,20.352-142.867-12.97H3.124c-1.467-0.367-2.246-1.467-2.521-2.658c-1.283-1.925-0.367-4.308,1.329-5.225
+    C2.574,174.063,3.399,173.467,4.453,173.33z"/></g>
+</svg></a>
+            </span>
+        </div>
+    </header>
+    <div class="markdown-body">
+        <p>How to use KVM, QEMU and <code>virt-manager</code> on Arch Linux.</p>
+<h2 id="tldr">TL;DR</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">LC_ALL</span><span class="op">=</span>C <span class="ex">lscpu</span> <span class="kw">|</span> <span class="fu">grep</span> Virtualization <span class="kw">||</span> <span class="bu">exit</span> 1</span>
+<span id="cb1-2"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-S</span> qemu virt-manager ebtables dmidecode <span class="at">--needed</span></span>
+<span id="cb1-3"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable libvirtd</span>
+<span id="cb1-4"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start libvirtd</span>
+<span id="cb1-5"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">groups</span> <span class="kw">|</span> <span class="fu">grep</span> libvirt <span class="kw">||</span> <span class="fu">sudo</span> usermod <span class="at">-G</span> libvirt <span class="at">-a</span> <span class="va">$USER</span></span></code></pre></div>
+<h2 id="full-explanation">Full explanation</h2>
+<p>The following line checks if we have virtualization enabled for the CPU and exits if we don't.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">LC_ALL</span><span class="op">=</span>C <span class="ex">lscpu</span> <span class="kw">|</span> <span class="fu">grep</span> Virtualization <span class="kw">||</span> <span class="bu">exit</span> 1</span></code></pre></div>
+<p>The following line installs QEMU, <code>virt-manager</code>, <code>ebtables</code> and <code>dmidecode</code> with Yay.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-S</span> qemu virt-manager ebtables dmidecode <span class="at">--needed</span></span></code></pre></div>
+<p>The following lines enable and start the libvirtd systemd unit.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable libvirtd</span>
+<span id="cb4-2"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start libvirtd</span></code></pre></div>
+<p>The following line checks if we are in the libvirt group and adds us to it if we are not.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a rel="noopener noreferrer nofollow" target="_blank" href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">groups</span> <span class="kw">|</span> <span class="fu">grep</span> libvirt <span class="kw">||</span> <span class="fu">sudo</span> usermod <span class="at">-G</span> libvirt <span class="at">-a</span> <span class="va">$USER</span></span></code></pre></div>
+
+    </div>
+</article>
+                </main>
+            </section>
+            <footer id="footer">
+                <div class="footer-left">Copyright © 2021 ThatOneLukas</div>
+                <div class="footer-right"><a href="/">Home</a></div>
+            </footer>
+        </div>
+    </body>
+</html>
