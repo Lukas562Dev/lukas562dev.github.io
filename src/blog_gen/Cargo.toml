@@ -1,0 +1,14 @@
+[package]
+name = "blog_gen"
+description = "Markdown to HTML. Made for LukasDoesDev's blog"
+version = "0.1.0"
+edition = "2021"
+authors = ["LukasDoesDev <lukasdoesdev@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "3.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.8"
+urlparse = "0.7.3"
