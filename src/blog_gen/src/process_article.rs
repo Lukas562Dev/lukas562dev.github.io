@@ -47,6 +47,20 @@ pub fn process_article(
 <div class="markdown-body">
 {content}
 </div>
+<script src="https://giscus.app/client.js"
+    data-repo="LukasDoesDev/lukasdoesdev.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxOTIxOTg0NzU="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOC3S3S84CBB4s"
+    data-mapping="pathname"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+</script>
 "#,
         title = article_meta.title,
         author = article_meta.author,

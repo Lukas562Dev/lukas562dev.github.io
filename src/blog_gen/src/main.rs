@@ -3,12 +3,12 @@ use std::{
     path::Path,
 };
 
-use crate::{blog_model::ArticleMeta, generate_html::generate_html};
+use crate::{article_model::ArticleMeta, generate_html::generate_html};
 use crate::{parse_md::parse_article_front_matter, process_custom_page::process_custom_page};
 use clap::StructOpt;
 use cli::Cli;
 
-pub mod blog_model;
+pub mod article_model;
 pub mod cli;
 pub mod custom_page_model;
 pub mod generate_html;
@@ -23,7 +23,7 @@ fn create_article_list(cli: &Cli) -> Option<()> {
         parse_article_front_matter(&content).ok()
     }
     fn list_posts_in_year(
-        year_dir: DirEntry,
+        year_dir: &DirEntry,
     ) -> Vec<(ArticleMeta, String, String, String, String)> {
         let mut output: Vec<(ArticleMeta, String, String, String, String)> = vec![];
         for month_dir in fs::read_dir(year_dir.path()).unwrap().flatten() {
@@ -48,61 +48,71 @@ fn create_article_list(cli: &Cli) -> Option<()> {
                 }
             }
         }
+        output.sort_by(|a, b| {
+            format!("{}-{}-{}-{}", a.1, a.2, a.3, a.4)
+                .partial_cmp(&format!("{}-{}-{}-{}", b.1, b.2, b.3, b.4))
+                .unwrap()
+        });
+        output.reverse();
         output
     }
+    let post_list = fs::read_dir(&cli.blog_input)
+    .ok()?
+    .collect::<Vec<Result<DirEntry, std::io::Error>>>()
+    .iter()
+    .rev()
+    .flatten()
+    .map(|year_dir: &DirEntry| {
+        Some(format!(
+            r#"
+            <li class="post-list-year">
+            <h2>{}</h2>
+            </li>
+            {}
+            "#,
+            year_dir.path().file_stem()?.to_string_lossy(),
+            list_posts_in_year(year_dir)
+                .iter()
+                .map(|(article, year, month, day, slug)| {
+                    Some(format!(
+                        r#"
+                        <li class="post-list-item">
+                            <time datetime="{date_str}T00:00:00.000Z" itemprop="datePublished">{date_str}</time>
+                            <a href="{post_url}">{title}</a>
+                        </li>
+                        "#,
+                        date_str = format!(
+                            "{}-{}-{}",
+                            year,
+                            month,
+                            day
+                        ),
+                        post_url= format!(
+                            "{}/{}/{}/{}/{}",
+                            cli.blog_base_pathname,
+                            year,
+                            month,
+                            day,
+                            slug
+                        ),
+                        title = article.title
+                    ))
+                })
+                .flatten()
+                .collect::<Vec<String>>()
+                .join("")
+        ))
+    })
+    .flatten()
+    .collect::<Vec<String>>()
+    .join("");
     let html = format!(
         r#"
 <ul class="post-list">
 {}
 </ul>
         "#,
-        fs::read_dir(&cli.blog_input)
-            .ok()?
-            .flatten()
-            .map(|year_dir| {
-                Some(format!(
-                    r#"
-                    <li class="post-list-year">
-                    <h2>{}</h2>
-                    </li>
-                    {}
-                    "#,
-                    year_dir.path().file_stem()?.to_string_lossy(),
-                    list_posts_in_year(year_dir)
-                        .iter()
-                        .map(|(article, year, month, day, slug)| {
-                            Some(format!(
-                                r#"
-                                <li class="post-list-item">
-                                    <time datetime="{date_str}T00:00:00.000Z" itemprop="datePublished">{date_str}</time>
-                                    <a href="{post_url}">{title}</a>
-                                </li>
-                                "#,
-                                date_str = format!(
-                                    "{}-{}-{}",
-                                    year,
-                                    month,
-                                    day
-                                ),
-                                post_url= format!(
-                                    "{}/{}/{}/{}/{}",
-                                    cli.blog_base_url,
-                                    year,
-                                    month,
-                                    day,
-                                    slug
-                                ),
-                                title = article.title
-                            ))
-                        })
-                        .flatten()
-                        .collect::<Vec<String>>()
-                        .join("")
-                ))
-            })
-            .flatten()
-            .collect::<Vec<String>>()
-            .join("")
+        post_list,
     );
     let html = generate_html(
         "Article List".to_string(),

@@ -14,13 +14,20 @@ pub struct Cli {
     /// The output directory to put the custom markdown's html files to
     #[clap(long, default_value = "../../en/")]
     pub custom_output: String,
-    /* /// Whether to run the program multi-threaded
+    // TODO: Thread pool :)
+    /// Whether to run the program multi-threaded
     #[clap(long)]
-    pub multi_threaded: bool, */
+    pub multi_threaded: bool,
     /// The base URL (no trailing slash)
     #[clap(long, default_value = "https://thatonelukas.tk/en")]
     pub base_url: String,
     /// The blog base URL (no trailing slash)
     #[clap(long, default_value = "https://thatonelukas.tk/en/blog")]
     pub blog_base_url: String,
+    /// The base pathname (no trailing slash)
+    #[clap(long, default_value = "/en")]
+    pub base_pathname: String,
+    /// The blog base pathname (no trailing slash)
+    #[clap(long, default_value = "/en/blog")]
+    pub blog_base_pathname: String,
 }

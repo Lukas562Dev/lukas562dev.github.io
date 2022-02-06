@@ -3,7 +3,7 @@ use std::{
     process::{Command, Stdio},
 };
 
-use crate::{blog_model::ArticleMeta, custom_page_model::CustomPageMeta};
+use crate::{article_model::ArticleMeta, custom_page_model::CustomPageMeta};
 
 pub fn read_front_matter(contents: &str) -> Vec<&str> {
     let mut is_front_matter: bool = false;
