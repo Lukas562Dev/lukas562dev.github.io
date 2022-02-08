@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+    <rect width="100%" height="100%" fill="white" />
+    <text text-anchor="middle" x="50%" y="50%" fill="black" font-size="18" font-family="monospace">lukas@thatonelukas.tk</text>
+    <g>
+        <!-- Me -->
+        <path d="M 87 80 l 0 -10 l 55 0 l 0 10 m -27.5 -10 l 0 -8" stroke="black" fill="none" />
+        <text text-anchor="middle" x="114" y="57" font-family="monospace" font-size="14">me</text>
+    </g>
+    <g>
+        <!-- Website -->
+        <path d="M 153 80 l 0 -10 l 159 0 l 0 10 m -79.5 -10 l 0 -8" stroke="black" fill="none" />
+        <text text-anchor="middle" x="232" y="57" font-family="monospace" font-size="14">website</text>
+    </g>
+    <g>
+        <!-- Twitter -->
+        <path d="M 142 107 l 0 10 l 138 0 l 0 -10 m -69 10 l 0 8" stroke="black" fill="none" />
+        <text text-anchor="middle" x="214" y="140" font-family="monospace" font-size="14">twitter</text>
+    </g>
+    <g>
+        <!-- Email -->
+        <path d="M 87 107 l 0 50 l 226 0 l 0 -50 m -113 50 l 0 8" stroke="black" fill="none" />
+        <text text-anchor="middle" x="200" y="180" font-family="monospace" font-size="14">email</text>
+    </g>
+</svg>
